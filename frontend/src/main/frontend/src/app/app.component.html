@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <div>
+    <mat-menu #navMenu="matMenu">
+      <div *ngIf="!itemView">
+        <button mat-menu-item (click)="toggleView()">
+          <mat-icon>list</mat-icon>
+          <span>Item View</span>
+        </button>
+      </div>
+      <div *ngIf="itemView">
+        <button mat-menu-item (click)="toggleView()">
+          <mat-icon>info</mat-icon>
+          <span>Context View</span>
+        </button>
+      </div>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="navMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+  </div>
+  <span>{{title}}</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <span></span> <!--Right Aligned Text-->
+</mat-toolbar>
+
+<div *ngIf="itemView">
+  <app-items></app-items>
+</div>
+<div *ngIf="!itemView">
+  <app-machine-contexts></app-machine-contexts>
+</div>
+
+

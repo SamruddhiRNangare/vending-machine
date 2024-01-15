@@ -1,0 +1,113 @@
+<div class="wrapper">
+
+  <div class="zordon">
+    <div class="title">
+      <div>
+        <h1>Items</h1>
+      </div>
+
+      <div class="selectItems">
+        <div>
+          <mat-form-field>
+            <mat-select [(value)]="nbrOfItems" placeholder="Nbr of Items">
+              <mat-option value="0">None</mat-option>
+              <mat-option value="1">One</mat-option>
+              <mat-option value="10">Ten</mat-option>
+              <mat-option value="30">Thirty</mat-option>
+              <mat-option value="50">Fifty</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button color="accent" (click)="insertItems()">Insert Items</button>
+        </div>
+        <div>
+          <button mat-raised-button (click)="insertCoin()">Insert Coin</button>
+        </div>
+        <div>
+          <button mat-raised-button (click)="refund()">Refund</button>
+        </div>
+      </div>
+
+      <div class="info">
+        <div>Context Id: {{context?.id}}</div>
+        <div>Item Count: {{context?.itemCount}}</div>
+        <div>Balance: {{context?.balance}}</div>
+        <div>Income: {{context?.income}}</div>
+        <div>Updated: {{context?.dateTime}}</div>
+        <div>State: {{context?.state?.status}}</div>
+        <!--<div>Error: {{context?.error}}</div>-->
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div [ngStyle]="{'height.px': height }" class="rita">
+    <table mat-table matSort [dataSource]="itemsDataSource" class="table-container mat-elevation-z8">
+
+      <!--Menu Column-->
+      <ng-container matColumnDef="menu">
+        <th mat-header-cell *matHeaderCellDef> Menu </th>
+        <td mat-cell *matCellDef="let item">
+          <div>
+            <mat-menu #itemNavMenu="matMenu">
+              <div *ngIf="!item?.purchaseDateTime">
+                <button mat-menu-item (click)="purchase(item)">
+                  <mat-icon>add</mat-icon>
+                  <span>Purchase Item</span>
+                </button>
+              </div>
+              <button mat-menu-item (click)="delete(item)">
+                <mat-icon>block</mat-icon>
+                <span>Delete Item</span>
+              </button>
+            </mat-menu>
+
+            <button mat-icon-button [matMenuTriggerFor]="itemNavMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Id Column: -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let item"> {{item?.id}} </td>
+      </ng-container>
+
+      <!-- Type Column: -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let item"> {{item?.type}} </td>
+      </ng-container>
+
+      <!-- Price Column: -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let item"> {{item?.price}} </td>
+      </ng-container>
+
+      <!-- insertDateTime Column: -->
+      <ng-container matColumnDef="insertDateTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Inserted </th>
+        <td mat-cell *matCellDef="let item"> {{item?.insertDateTime}} </td>
+      </ng-container>
+
+      <!-- purchaseDateTime Column: -->
+      <ng-container matColumnDef="purchaseDateTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Purchased </th>
+        <td mat-cell *matCellDef="let item"> {{item?.purchaseDateTime}} </td>
+      </ng-container>
+
+      <!-- Row Template -->
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+    </table>
+  </div>
+</div>
+

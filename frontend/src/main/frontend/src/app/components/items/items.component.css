@@ -1,0 +1,67 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    background-color: gray;
+	
+    height: 100%;
+    position: relative;
+    padding: 24px;
+    margin: auto;
+}
+
+th.mat-header-cell {
+	text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.mat-table {
+	overflow: auto;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
+.title {
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.table-container {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+}
+
+.info {
+    display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+}
+
+.selectItems {
+    display: flex;
+	flex-direction: row;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+.mat-table {
+	overflow: auto;
+}
+
+.zordon {
+    flex-shrink: 0;
+}
+.rita {
+	flex-grow: 1;
+	overflow-y: auto;
+}

@@ -1,0 +1,11 @@
+spring:
+  mvc:
+    static-path-pattern: /**.*
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+
+logging:
+  level:
+    com.solutions.vendingmachine: DEBUG
